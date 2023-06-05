@@ -24,10 +24,10 @@
 // console.log(2 < 12);
 // console.log(12 < 2);
 // console.log('a' < 'b');
-// console.log('b' < 'a');
+// console.log('b' > 'a');
 // console.log('A' < 'a');
-// console.log('apple' < 'bananana');
-// console.log('bananana' < 'apple');
+// console.log('apple' < 'apples');
+// console.log('banana' < 'apple');
 // console.log(true < false);
 // console.log(false < true);
 
@@ -60,4 +60,4 @@
 // console.log('4' != 4);
 
 //* Строга нерівність (!==)
-// console.log(4 !== 4);
+// console.log(4 !== '4');

@@ -80,12 +80,12 @@
 */
 
 // const min = function (a, b) {
-//   // const minNum = a < b ? a : b;
-//   // if (a < b) {
-//   //   minNum = a;
-//   // } else {
-//   //   minNum = b;
-//   // }
+// const minNum = a < b ? a : b;
+// if (a < b) {
+//   minNum = a;
+// } else {
+//   minNum = b;
+// }
 //   return a < b ? a : b;
 // };
 
@@ -132,26 +132,26 @@
 ? Кількість імен і телефонів гарантовано однакова.
 */
 
-const printContactsInfo = function (names, phones, ...args) {
-  names = names.split(',');
-  phones = phones.split(',');
-  for (let i = 0; i < names.length; i += 1) {
-    console.log(`${names[i]}: ${phones[i]}`);
-  }
-  console.log(args);
-};
+// const printContactsInfo = function (names, phones, ...args) {
+//   names = names.split(',');
+//   phones = phones.split(',');
+//   for (let i = 0; i < names.length; i += 1) {
+//     console.log(`${names[i]}: ${phones[i]}`);
+//   }
+//   console.log(args);
+// };
 
-printContactsInfo(
-  'Jacob,William,Solomon,Artemis',
-  '89001234567,89001112233,890055566377,890055566300',
-  'Hello',
-  654,
-  45
-);
-printContactsInfo(
-  'Vera,Carr,Violet,Sherman',
-  '89001234567,89001112233,890055566377,890055566300'
-);
+// printContactsInfo(
+//   'Jacob,William,Solomon,Artemis',
+//   '89001234567,89001112233,890055566377,890055566300',
+//   'Hello',
+//   654,
+//   45
+// );
+// printContactsInfo(
+//   'Vera,Carr,Violet,Sherman',
+//   '89001234567,89001112233,890055566377,890055566300'
+// );
 
 /*
 ? Напишіть функцію findLargestNumber(numbers) яка шукає найбільше число в масиві.
@@ -195,14 +195,56 @@ printContactsInfo(
 ? updateCourse(oldName, newName) - змінює назву курса
 */
 
+// const courses = ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL'];
+
+// console.log(courses);
+
+// const addCourse = function (name) {
+//   if (courses.includes(name)) {
+//     console.log('У вас вже є такий курс');
+//     return;
+//   }
+
+//   if (courses.length === 1) {
+//     console.log('Цей курс не підходить');
+//     return;
+//   }
+//   courses.push(name);
+// };
+
+// console.log(addCourse());
+
 // addCourse('Express');
 // console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'React', 'PostgreSQL', 'Express']
 // addCourse('CSS'); // 'У вас вже є такий курс'
+
+// const removeCourse = function (name) {
+//   if (courses.includes(name)) {
+//     const idxOfCourse = courses.indexOf(name);
+//     courses.splice(idxOfCourse, 1);
+//     return;
+//   }
+//   console.log('Курс за такою назвою не знайдено');
+// };
 
 // removeCourse('React');
 // console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'Express']
 // removeCourse('Vue'); // 'Курс за такою назвою не знайдено'
 
+// const updateCourse = function (oldName, newName) {
+//   if (!courses.includes(oldName)) {
+//     console.log('Курса за такою назвою не знайдено');
+//     return;
+//   }
+//   const idxOfCourse = courses.indexOf(oldName);
+//   courses.splice(idxOfCourse, 1, newName);
+// };
+
 // updateCourse('Express', 'NestJS');
 // console.log(courses); // ['HTML', 'CSS', 'JavaScript', 'PostgreSQL', 'NestJS']
 // updateCourse('С++', 'PHP'); // 'Курса за такою назвою не знайдено'
+
+// const isTrue = false == [];
+// const isFalse = true == ![]];
+
+// console.log(isTrue);

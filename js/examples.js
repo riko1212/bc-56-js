@@ -5,12 +5,25 @@
 ? замінює значення premium на false
 ? виводить вміст об'єкта user у форматі ключ: значення використовуючи Object.keys() і for...of
 */
-// const user = {
-//   name: 'Mango',
-//   age: 20,
-//   hobby: 'html',
-//   premium: false,
-// };
+const user = {
+  name: 'Mango',
+  age: 20,
+  hobby: 'html',
+  premium: true,
+};
+
+user.mood = 'happy';
+user.hobby += ' skydiving';
+// user.hobby = ['html', 'skydiving'];
+user.premium = false;
+
+console.log(user);
+
+// const userKeys = Object.keys(user);
+
+for (const key of Object.keys(user)) {
+  console.log(`${key} : ${user[key]}`);
+}
 
 /*
 ? У нас є об'єкт, де зберігаються зарплати нашої команди.
@@ -27,13 +40,13 @@
 ? Напишіть ф-цію calcTotalPrice(stones, stoneName), яка приймає масив об'єктів та рядок з назвою каменю.
 ? Ф-ція рахує і повертає загальну вартість каміння з таким ім'ям.
 */
-const stones = [
-  { name: 'Смарагд', price: 1300, quantity: 4 },
-  { name: 'Діамант', price: 2700, quantity: 3 },
-  { name: 'Сапфір', price: 400, quantity: 7 },
-  { name: 'Щебінь', price: 200, quantity: 2 },
-];
+// const stones = [
+//   { name: 'Смарагд', price: 1300, quantity: 4 },
+//   { name: 'Діамант', price: 2700, quantity: 3 },
+//   { name: 'Сапфір', price: 400, quantity: 7 },
+//   { name: 'Щебінь', price: 200, quantity: 2 },
+// ];
 
-console.log(calcTotalPrice(stones, 'Смарагд')); // 5200
-console.log(calcTotalPrice(stones, 'Діамант')); // 8100
-console.log(calcTotalPrice(stones, 'Аконіт')); // Каменя за такою назвою не знайдено
+// console.log(calcTotalPrice(stones, 'Смарагд')); // 5200
+// console.log(calcTotalPrice(stones, 'Діамант')); // 8100
+// console.log(calcTotalPrice(stones, 'Аконіт')); // Каменя за такою назвою не знайдено

@@ -2,7 +2,8 @@
 ? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
 ? замість набору незалежних аргументів.
 */
-// function calcBMI( weight, height ) {
+// function calcBMI({ weight, height }) {
+//   // const { weight, height } = params;
 //   const numericWeight = Number(weight.replace(',', '.'));
 //   const numericHeight = Number(height.replace(',', '.'));
 
@@ -38,7 +39,8 @@
 ? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
 ? замість набору незалежних аргументів.
 */
-// function printContactsInfo( names, phones ) {
+// function printContactsInfo(people) {
+//   const { names, phones } = people;
 //   const nameList = names.split(',');
 //   const phoneList = phones.split(',');
 
@@ -47,13 +49,13 @@
 //   }
 // }
 
-// Було
+// // Було
 // printContactsInfo(
 //   'Jacob,William,Solomon,Artemis',
 //   '89001234567,89001112233,890055566377,890055566300'
 // );
 
-// Очікується
+// // Очікується
 // printContactsInfo({
 //   names: 'Jacob,William,Solomon,Artemis',
 //   phones: '89001234567,89001112233,890055566377,890055566300',
@@ -63,15 +65,26 @@
 ? Перепиши функцію так, щоб вона приймала один об'єкт параметрів,
 ? замість набору незалежних аргументів.
 */
-// function getBotReport(companyName, repairBots, defenceBots) {
-
+// function getBotReport(data) {
+//   const {
+//     companyName,
+//     bots: { repair: repairBots, defence: defenceBots },
+//   } = data;
 //   return `${companyName} has ${repairBots + defenceBots} bots in stock`;
 // }
 
-// Було
-// console.log(getBotReport('Cyberdyne Systems', 150, 50));
+// // Було
+// // console.log(getBotReport('Cyberdyne Systems', 150, 50));
 
-// Очікується
+// // console.log(
+// //   getBotReport({
+// //     companyName: 'Cyberdyne Systems',
+// //     repairBots: 150,
+// //     defenceBots: 50,
+// //   })
+// // );
+
+// // Очікується
 // console.log(
 //   getBotReport({
 //     companyName: 'Cyberdyne Systems',
@@ -87,29 +100,36 @@
 ? про кількість товарів на складі будь-якої компанії.
 */
 
-// function getStockReport(obj) {
-// }
+function getStockReport(obj) {
+  const { companyName, stock } = obj;
+  let total = 0;
+  const stockValues = Object.values(stock);
+  for (const value of stockValues) {
+    total += value;
+  }
+  return `${companyName} has ${total} items in stock`;
+}
 
-// console.log(
-//   getStockReport({
-//     companyName: 'Cyberdyne Systems',
-//     stock: {
-//       repairBots: 150,
-//       defenceBots: 50,
-//     },
-//   })
-// ); //"Cyberdyne Systems has 200 items in stock"
+console.log(
+  getStockReport({
+    companyName: 'Cyberdyne Systems',
+    stock: {
+      repairBots: 150,
+      defenceBots: 50,
+    },
+  })
+); //"Cyberdyne Systems has 200 items in stock"
 
-// console.log(
-//   getStockReport({
-//     companyName: 'Belacci',
-//     stock: {
-//       shoes: 20,
-//       skirts: 10,
-//       hats: 5,
-//     },
-//   })
-// ); // "Belacci has 35 item in stock"
+console.log(
+  getStockReport({
+    companyName: 'Belacci',
+    stock: {
+      shoes: 20,
+      skirts: 10,
+      hats: 5,
+    },
+  })
+); // "Belacci has 35 item in stock"
 
 /*
 ? Напиши функцію createContact(partialContact) так,
@@ -139,22 +159,32 @@
 ? Напиши функцію transformUsername(user) так, щоб вона повертала новий об'єкт із властивістю fullName, замість firstName та lastName.
 */
 
-// console.log(
-//   transformUsername({
-//     id: 1,
-//     firstName: 'Jacob',
-//     lastName: 'Mercer',
-//     email: 'j.mercer@mail.com',
-//     friendCount: 40,
-//   })
-// );
+function transformUsername(user) {
+  const { firstName, lastName, ...otherProps } = user;
 
-// console.log(
-//   transformUsername({
-//     id: 2,
-//     firstName: 'Adrian',
-//     lastName: 'Cross',
-//     email: 'a.cross@hotmail.com',
-//     friendCount: 20,
-//   })
-// );
+  const res = {
+    fullName: `${firstName} ${lastName}`,
+    ...otherProps,
+  };
+  return res;
+}
+
+console.log(
+  transformUsername({
+    id: 1,
+    firstName: 'Jacob',
+    lastName: 'Mercer',
+    email: 'j.mercer@mail.com',
+    friendCount: 40,
+  })
+);
+
+console.log(
+  transformUsername({
+    id: 2,
+    firstName: 'Adrian',
+    lastName: 'Cross',
+    email: 'a.cross@hotmail.com',
+    friendCount: 20,
+  })
+);

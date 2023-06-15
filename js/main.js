@@ -58,42 +58,82 @@
 // console.log(user1);
 
 //* Розпилення складних типів
+
 // const user = {
-//   firstName: 'Jonathan',
-//   lastName: 'Barnett',
-//   age: 30,
-//   someArr: [1, 2, 3, 4],
+//   email: 'test@MediaList.com',
+//   age: 40,
+//   location: { lat: 10, lon: 20 },
 // };
 
-// const user1 = _.cloneDeep(user);
+// // const userEmail = user.email;
 
-// console.log(user);
-// console.log(user1);
+// // const userEmail = 'mail@email.com';
+// // const name = user.name;
+// const { email, ...props } = user;
+// // const { lat, lon } = newLocation;
+// console.log(props);
+const user = {
+  firstName: 'Jonathan',
+  lastName: 'Barnett',
+  age: 30,
+  someArr: [1, 2, 3, 4],
+  showAge() {
+    return user.age;
+  },
+};
+
+const keys = Object.keys(user);
+
+for (const key of keys) {
+  console.log(user[key]);
+}
+
+function fn({ n } = {}) {
+  if (n === undefined) {
+    return;
+  }
+
+  console.log(n.includes(1));
+}
+
+fn();
+// console.log(keys);
+
+// const { ...user1 } = user;
+// const user1 = {
+//   ...user
+// }
+
+// console.log('user ----> ', user);
+// console.log('user1 ----> ', user1);
+
+// console.log('---------------');
 
 // user1.age = 40;
 
-// console.log(user);
-// console.log(user1);
+// console.log('user ----> ', user);
+// console.log('user1 ----> ', user1);
 
 // user1.someArr.push(5);
+// console.log('---------------');
 
-// console.log(user);
-// console.log(user1);
+// console.log('user ----> ', user);
+// console.log('user1 ----> ', user1);
 
 /*
  * Операція rest
  */
 //? Напишіть функцію sum, яка складає довільну кількість аргументів
 
-const sum = function (etalon, ...args) {
-  // const args = Array.from(arguments);
-  // let total = 0;
-  // for (const item of args) {
-  //   total += item;
-  // }
-  // return total;
-  return args.includes(etalon);
-};
+// const sum = function (etalon, ...args) {
+//   // const args = Array.from(arguments);
+//   // let total = 0;
+//   // for (const item of args) {
+//   //   total += item;
+//   // }
+//   // return total;
+//   return args.includes(etalon);
+// };
 
-console.log(sum(6, 1, 3, 5));
-console.log(sum(6, 3, 5, 6, 2));
+// console.log(sum(6, 1, 3, 5));
+// console.log(sum(6, 3, 5, 6, 2));

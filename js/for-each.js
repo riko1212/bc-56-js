@@ -57,7 +57,9 @@ const calсulateAverage = (...args) => {
   //   total += args[i];
   // }
 
-  args.forEach((el) => (total += el));
+  args.forEach((el) => {
+    total += el;
+  });
 
   return total / args.length;
 };

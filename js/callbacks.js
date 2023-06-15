@@ -2,6 +2,14 @@
  * Колбек-функції, функції вищого порядку
  */
 
+const greet = function (firstName, callback) {
+  callback(firstName);
+};
+
+// const newGreet = function (firstName) {
+//   console.log(`Hello, ${firstName}!`);
+// };
+
 // const prettyGreet = function (username) {
 //   console.log(`Hello ${username} 👋`);
 // };
@@ -17,9 +25,12 @@
 // const fetchUser = async function (username, callback) {
 //   const response = await fetch(`https://api.github.com/users/${username}`);
 //   const result = await response.json();
-
 //   callback(result);
 // };
+
+// const test = fetchUser('riko1212', showAvatar);
+
+// console.log(test);
 
 // const showInfoAboutUser = function (user) {
 //   console.log(user);
@@ -29,17 +40,27 @@
 //   console.log(user.avatar_url);
 // };
 
+// const showCreasted = function (user) {
+//   console.log(user.created_at);
+// };
+
 // fetchUser('riko1212', showInfoAboutUser);
 // fetchUser('riko1212', showAvatar);
+// fetchUser('riko1212', showCreasted);
 
 //? Реєстрація подій на сторінці
 // const userEmailEl = document.querySelector('.js-contact-form-email');
 
-// const logValues = function (event) {
-//   console.log('Hi');
+// // const logValues = ;
+
+// const logBiggerValues = function (event) {
+//   console.log('Hello');
 // };
 
-// userEmailEl.addEventListener('blur', logValues);
+// userEmailEl.addEventListener('click', function (event) {
+//   console.log('Hi');
+// });
+// userEmailEl.addEventListener('focus', logBiggerValues);
 
 /*
 ? Напишіть функцію each(array, callback), яка першим параметром очікує масив, а другим - функцію, яка застосовується до кожного елемента масиву.
@@ -47,6 +68,14 @@
 */
 
 // const numbers = [1, 2, 3, 4, 5];
+
+// const each = function (array, callback) {
+//   const newArr = [];
+//   for (const item of array) {
+//     newArr.push(callback(item));
+//   }
+//   return newArr;
+// };
 
 // const multi = function (el) {
 //   return el * 2;
@@ -56,8 +85,20 @@
 //   return el + 2;
 // };
 
+// const pow = function (el) {
+//   return el * el;
+// };
+
+// const makeStr = function (el) {
+//   return el + '';
+// };
+
 // console.log(each(numbers, multi));
-// console.log(each(numbers, doubleAdd));
+// console.log(each(each(numbers, doubleAdd), multi));
+// console.log(each(numbers, pow));
+// console.log(each(numbers, makeStr));
+
+
 
 /*
 ? Напишіть такі функції:
@@ -67,8 +108,24 @@
 ? logTotalPrice(product) - коллбек, що приймає об'єкт продукту і логує загальну вартість товару в консоль
 */
 
+// function createProduct(product, callback) {
+//   const newProduct = {
+//     id: Date.now(),
+//     ...product,
+//   };
+//   callback(newProduct);
+// }
+
 // createProduct({ name: '🍎', price: 30, quantity: 3 }, logProduct);
 // createProduct({ name: '🍎', price: 30, quantity: 3 }, logTotalPrice);
+
+// function logProduct(product) {
+//   console.log(product);
+// }
+
+// function logTotalPrice(product) {
+//   console.log(product.price * product.quantity);
+// }
 
 // createProduct({ name: '🍋', price: 20, quantity: 5 }, logProduct);
 // createProduct({ name: '🍋', price: 20, quantity: 5 }, logTotalPrice);
@@ -91,18 +148,39 @@
 // const account = {
 //   username: 'Jacob',
 //   balance: 400,
+//   withdraw(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount > this.balance) {
+//       onError(`Amount can't exceed account balance of ${this.balance} credits`);
+//     } else {
+//       this.balance -= amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+//   deposit(amount, onSuccess, onError) {
+//     if (amount > TRANSACTION_LIMIT) {
+//       onError(`Amount should not exceed ${TRANSACTION_LIMIT} credits`);
+//     } else if (amount <= 0) {
+//       onError(`Amount must be more than 0 credits`);
+//     } else {
+//       this.balance += amount;
+//       onSuccess(`Account balance: ${this.balance}`);
+//     }
+//   },
+// };
 
 // function handleSuccess(message) {
-//   console.log(`✅ Success! Account balance ${message}`);
+//   console.log(`✅ Success! ${message}`);
 // }
 
 // function handleError(message) {
 //   console.log(`❌ Error! ${message}`);
 // }
 
-// account.withdraw(2000, handleSuccess, handleError);
-// account.withdraw(600, handleSuccess, handleError);
-// account.withdraw(300, handleSuccess, handleError);
+// // account.withdraw(2000, handleSuccess, handleError);
+// // account.withdraw(600, handleSuccess, handleError);
+// // account.withdraw(300, handleSuccess, handleError);
 // account.deposit(1700, handleSuccess, handleError);
 // account.deposit(0, handleSuccess, handleError);
 // account.deposit(-600, handleSuccess, handleError);

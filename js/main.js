@@ -22,6 +22,17 @@
 //   },
 // };
 
+// const anotherUser = {
+//   name: 'Luis',
+//   age: 30,
+// };
+
+// // user.showThis();
+// // user.showName();
+// console.log(anotherUser.showName);
+
+// anotherUser.showName();
+
 //TODO: Розглянемо як this поводиться у звичайних функціях (суворий, не суворий режим)
 //? Function expression
 // const greet = function () {
@@ -32,6 +43,7 @@
 // greet();
 
 //? Function declaration
+
 // function greet() {
 //   console.log('This --->', this);
 //   console.log('Hello');
@@ -59,7 +71,14 @@
 // const user = {
 //   name: 'Luis',
 //   age: 30,
+
 // };
+
+// user.showUserThis = showThis;
+// user.showUserName = showName;
+
+// user.showUserThis();
+// user.showUserName();
 
 //TODO: Виклик методу об'єкта без контексту
 // const user = {
@@ -74,6 +93,12 @@
 //     console.log(this.name);
 //   },
 // };
+
+// const showThis = user.showUserThis;
+// const showName = user.showUserName;
+
+// // user.showThis();
+// showName();
 
 //TODO: This в callback функціях
 // const user = {
@@ -90,23 +115,29 @@
 // };
 
 // const someFunction = function (callback) {
-
+//   // let callback = user.showUserThis;
 //   callback();
 // };
 
-// someFunction(user.showUserThis);
+// someFunction(user.showUserName);
 
 //TODO: This у стрілочних функціях. Стрілочні функції не мають свого this, this в стрілках завжди посилається на батьківський this.
 // const user = {
 //   name: 'Luis',
 //   age: 30,
-//   changeAge: (newAge) => {
-//     console.log(`this ---->`, this);
-//     this.age = newAge;
+//   changeUserAge(newAge) {
+//     console.log(this);
+//     const changeAge = (newAge) => {
+//       console.log(`this ---->`, this);
+//       this.age = newAge;
+//     };
+//     changeAge(newAge);
 //   },
 // };
 
-// user.changeAge(40);
+// user.changeUserAge(40);
+
+// console.log(user);
 
 /*
 ? Яким буде результат виконання цього коду?
@@ -143,13 +174,16 @@
 /*
 ? Яким буде результат console.log
 */
-// function makeUser() {
 
+// const anothrUser = {
+//   name: 'Anna',
+// };
+
+// function makeUser() {
 //   return {
 //     name: 'Джон',
 //     ref() {
-
-//       return this;
+//       return anothrUser;
 //     },
 //   };
 // }
@@ -157,6 +191,7 @@
 // const user = makeUser();
 
 // console.log(user);
+// console.log(user.ref());
 // console.log(user.ref().name);
 
 /*
@@ -167,14 +202,17 @@
 
 //   up() {
 //     this.step += 1;
+//     return this;
 //   },
 
 //   down() {
 //     this.step -= 1;
+//     return this;
 //   },
 
 //   showStep() {
 //     console.log(this.step);
+//     return this;
 //   },
 // };
 

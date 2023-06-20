@@ -4,44 +4,40 @@
  * Інтерфейс - набір доступних методів та властивостей
  */
 
-//? Функція конструктор
-const User = function (userInfo) {
+function User(userInfo) {
+  // this = {}
   const {
     firstName,
     lastName,
-    age = null,
+    age,
     phoneNumber,
     login,
     password,
+    country = '-',
   } = userInfo;
-
-  // this = {};
   this.firstName = firstName;
   this.lastName = lastName;
   this.age = age;
   this.phoneNumber = phoneNumber;
   this.login = login;
   this.password = password;
-  // return this;
+  this.country = country;
+  // return this
+}
+
+User.prototype.showName = function () {
+  return this.firstName;
 };
 
-User.prototype.changeFirstName = function (newFirstName) {
-  this.firstName = newFirstName;
-};
-
-console.dir(User);
-
-const user1 = new User({
+const obj = {
+  firstName: 'Edward',
   lastName: 'Smith',
   age: 30,
   phoneNumber: '(096) 58-05-459',
   login: 'id@si.pg',
   password: '123456',
-  firstName: 'Edward',
-});
-
-console.log(user1);
-
+};
+const user1 = new User(obj);
 const user2 = new User({
   firstName: 'Michael',
   lastName: 'Gill',
@@ -49,15 +45,23 @@ const user2 = new User({
   login: 'cu@hecekalo.edu',
   phoneNumber: '(097) 60-62-231',
   password: 'qwerty123',
+  country: 'Ukraine',
 });
 
-console.log(user2);
-
-user1.changeFirstName('Andrii');
-user2.changeFirstName('Marvin');
-
+console.log(user1.showName());
 console.log(user1);
 console.log(user2);
+
+// const user1 = {
+//   firstName: 'Edward',
+//   lastName: 'Smith',
+//   age: 30,
+//   phoneNumber: '(096) 58-05-459';
+//   login: 'id@si.pg';
+//   password: '123456'
+// };
+
+//? Функція конструктор
 
 // const user1 = {
 //   firstName: 'Edward',
@@ -78,3 +82,7 @@ console.log(user2);
 // };
 
 //? Створюємо методи для наших екземплярів
+
+User.prototype.showName = function () {
+  return this.firstName;
+};

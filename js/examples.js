@@ -40,15 +40,41 @@
 ? removeItem(item) - отримує товар і, якщо він є, видаляє його з поточних.
 */
 
-// const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+class Storage {
+  constructor(items) {
+    this.items = items;
+  }
+  getItems() {
+    return this.items;
+  }
 
-// console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑' ]
+  addItem(item) {
+    this.items.push(item);
+  }
 
-// storage.addItem('🍌');
-// console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
+  removeItem(item) {
+    if (this.items.includes(item)) {
+      const idxOfItem = this.items.indexOf(item);
+      this.items.splice(idxOfItem, 1);
+      return;
+    }
+    console.log('Такого фрукта нема');
+  }
+}
 
-// storage.removeItem('🍋');
-// console.log(storage.getItems()); // [ '🍎', '🍇', '🍑', '🍌' ]
+const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+console.log(storage);
+
+console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑' ]
+
+storage.addItem('🍌');
+console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
+
+storage.removeItem('🍋');
+console.log(storage.getItems()); // [ '🍎', '🍇', '🍑', '🍌' ]
+
+storage.removeItem('л');
+console.log(storage.getItems()); // [ '🍎', '🍇', '🍑', '🍌' ]
 /*
 ? Напиши клас User який створює об'єкт із властивостями login та email.
 ? Оголоси приватні властивості #login та #email, доступ до яких зроби через геттер та сеттер login та email.
@@ -112,18 +138,18 @@
 ? За замовчуванням значення властивості on має бути false.
 */
 
-const firstToggle = new Toggle({ isOpen: true });
+// const firstToggle = new Toggle({ isOpen: true });
 
-console.group('firstToggle');
-console.log(firstToggle.on);
-firstToggle.toggle();
-console.log(firstToggle.on);
-console.groupEnd('firstToggle');
+// console.group('firstToggle');
+// console.log(firstToggle.on);
+// firstToggle.toggle();
+// console.log(firstToggle.on);
+// console.groupEnd('firstToggle');
 
-const secondToggle = new Toggle();
+// const secondToggle = new Toggle();
 
-console.group('secondToggle');
-console.log(secondToggle.on);
-secondToggle.toggle();
-console.log(secondToggle.on);
-console.groupEnd('secondToggle');
+// console.group('secondToggle');
+// console.log(secondToggle.on);
+// secondToggle.toggle();
+// console.log(secondToggle.on);
+// console.groupEnd('secondToggle');

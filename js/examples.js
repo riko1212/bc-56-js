@@ -9,16 +9,60 @@
 ? Додай метод updatePostCount(value), який у параметрі value приймає кількість постів, які потрібно додати користувачеві.
 */
 
-// const mango = new Blogger({
-//   email: 'mango@mail.com',
-//   age: 24,
-//   numberOfPosts: 20,
-//   topics: ['tech', 'cooking'],
-// });
+class Blogger {
+  constructor(info) {
+    const { email, age, topics } = info;
+    this.email = email;
+    this.age = age;
+    this.topics = topics;
+  }
 
-// console.log(mango.getInfo()); // Blogger mango@mail.com is 24 years old and has 20 posts
-// mango.updatePostCount(5);
-// console.log(mango.getInfo()); // Blogger mango@mail.com is 24 years old and has 25 posts
+  static getInfo(myemail, myage) {
+    return `Blogger ${myemail} is ${myage} years old`;
+  }
+}
+
+class Vlogger extends Blogger {
+  constructor({ numberOfVideo, ...props } = {}) {
+    super(props);
+    this.numberOfVideo = numberOfVideo;
+  }
+  updateVideoCount(value) {
+    return (this.numberOfVideo += value);
+  }
+  getVideoInfo() {
+    return `${Vlogger.getInfo(this.email, this.age)} and has ${
+      this.numberOfVideo
+    } videos.`;
+  }
+}
+
+class InstaBlogger extends Blogger {
+  constructor(numberOfPosts, ...props) {
+    super(props);
+    this.numberOfPosts = numberOfPosts;
+  }
+  updatePostCount(value) {
+    return (this.numberOfPosts += value);
+  }
+
+  getPostInfo() {
+    return `${getInfo()} and has ${this.numberOfPost} posts.`;
+  }
+}
+
+const mango = new Vlogger({
+  email: 'mango@mail.com',
+  age: 24,
+  numberOfVideo: 20,
+  topics: ['tech', 'cooking'],
+});
+
+console.log(mango.getVideoInfo()); // Blogger mango@mail.com is 24 years old and has 20 posts
+mango.updateVideoCount(5);
+console.log(mango.getVideoInfo()); // Blogger mango@mail.com is 24 years old and has 25 posts
+
+
 
 // const poly = new Blogger({
 //   email: 'poly@mail.com',
@@ -40,41 +84,41 @@
 ? removeItem(item) - отримує товар і, якщо він є, видаляє його з поточних.
 */
 
-class Storage {
-  constructor(items) {
-    this.items = items;
-  }
-  getItems() {
-    return this.items;
-  }
+// class Storage {
+//   constructor(items) {
+//     this.items = items;
+//   }
+//   getItems() {
+//     return this.items;
+//   }
 
-  addItem(item) {
-    this.items.push(item);
-  }
+//   addItem(item) {
+//     this.items.push(item);
+//   }
 
-  removeItem(item) {
-    if (this.items.includes(item)) {
-      const idxOfItem = this.items.indexOf(item);
-      this.items.splice(idxOfItem, 1);
-      return;
-    }
-    console.log('Такого фрукта нема');
-  }
-}
+//   removeItem(item) {
+//     if (this.items.includes(item)) {
+//       const idxOfItem = this.items.indexOf(item);
+//       this.items.splice(idxOfItem, 1);
+//       return;
+//     }
+//     console.log('Такого фрукта нема');
+//   }
+// }
 
-const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
-console.log(storage);
+// const storage = new Storage(['🍎', '🍋', '🍇', '🍑']);
+// console.log(storage);
 
-console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑' ]
+// console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑' ]
 
-storage.addItem('🍌');
-console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
+// storage.addItem('🍌');
+// console.log(storage.getItems()); // [ '🍎', '🍋', '🍇', '🍑', '🍌' ]
 
-storage.removeItem('🍋');
-console.log(storage.getItems()); // [ '🍎', '🍇', '🍑', '🍌' ]
+// storage.removeItem('🍋');
+// console.log(storage.getItems()); // [ '🍎', '🍇', '🍑', '🍌' ]
 
-storage.removeItem('л');
-console.log(storage.getItems()); // [ '🍎', '🍇', '🍑', '🍌' ]
+// storage.removeItem('л');
+// console.log(storage.getItems()); // [ '🍎', '🍇', '🍑', '🍌' ]
 /*
 ? Напиши клас User який створює об'єкт із властивостями login та email.
 ? Оголоси приватні властивості #login та #email, доступ до яких зроби через геттер та сеттер login та email.

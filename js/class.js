@@ -8,6 +8,8 @@
 class User {
   #userLogin;
   #password;
+
+  static test = 5;
   constructor(userInfo) {
     const {
       firstName,
@@ -30,12 +32,22 @@ class User {
     return this.firstName;
   }
   get login() {
-    if (false) {
+    if (User.validate()) {
       return this.#userLogin;
     } else return 'Error!';
   }
   set login(newLogin) {
-    this.#userLogin = newLogin;
+    if (User.validate(newLogin)) {
+      this.#userLogin = newLogin;
+      return typeof newLogin;
+    }
+  }
+
+  static validate(name) {
+    return typeof name === 'string';
+  }
+  static pow(num) {
+    return User.test * num;
   }
 }
 
@@ -48,5 +60,7 @@ const obj = {
   password: '123456',
 };
 const user1 = new User(obj);
-// console.log((user1.login = '123'));
-console.log(user1.login);
+console.log((user1.login = 123));
+
+console.log(user1);
+console.dir(User.pow(15));

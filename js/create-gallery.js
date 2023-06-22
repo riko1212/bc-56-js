@@ -41,6 +41,36 @@ const pictures = [
 
 // Функція для створення карточки makeGalleryCard(cardInfo)
 
+const makeGalleryCard = (cardInfo) => {
+  const galleryItemEl = document.createElement('li');
+  galleryItemEl.classList.add('gallery-item');
+
+  // Створення a
+
+  const galleryLinkEl = document.createElement('a');
+  galleryLinkEl.href = '#';
+
+  galleryItemEl.append(galleryLinkEl);
+
+  // Створення img
+
+  const galleryImgEl = document.createElement('img');
+  galleryImgEl.src = cardInfo.url;
+  galleryImgEl.alt = cardInfo.alt;
+  galleryImgEl.width = cardInfo.width;
+  galleryImgEl.height = cardInfo.height;
+  galleryLinkEl.append(galleryImgEl);
+
+  return galleryItemEl;
+};
+
+const galleryCardArr = pictures.map((el) => makeGalleryCard(el));
+
+console.log(galleryCardArr);
+
+const galleryListEl = document.querySelector('.js-gallery');
+
+galleryListEl.append(...galleryCardArr);
 // Створення li
 
 // Створення a

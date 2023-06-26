@@ -13,7 +13,6 @@ const modalCloseBtnEl = document.querySelector('.js-modal-close');
 const onEscClick = (event) => {
   if (event.code === 'Escape') {
     onModalCloseBtnElClick();
-    console.log(event.code);
   }
 };
 
@@ -27,6 +26,16 @@ const onModalOpenBtnElClick = () => {
   document.addEventListener('keydown', onEscClick);
 };
 
+const onBackdropElClick = ({ target, currentTarget }) => {
+  if (target !== currentTarget) {
+    return;
+  }
+  onModalCloseBtnElClick();
+  console.log(event);
+};
+
 modalOpenBtnEl.addEventListener('click', onModalOpenBtnElClick);
 
 modalCloseBtnEl.addEventListener('click', onModalCloseBtnElClick);
+
+backdropEl.addEventListener('click', onBackdropElClick);

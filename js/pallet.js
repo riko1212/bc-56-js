@@ -10,10 +10,22 @@ const randomColor = () => {
 const paintElements = () => {
   palletItemEl.forEach((element) => {
     const color = randomColor();
-
-    element.style.backgroundColor = color;
-    element.dataset.elementColor = color;
+    const { style, dataset } = element;
+    style.backgroundColor = color;
+    dataset.elementColor = color;
   });
 };
 
 paintElements();
+
+const onPalletElClick = ({ target }) => {
+  if (target.nodeName !== 'LI') {
+    return;
+  }
+  console.dir(target);
+  const palletItemColor = target.dataset.elementColor;
+  const palletOutputColor = target.querySelector('.js-pallet__item-color');
+  palletOutputColor.textContent = palletItemColor;
+};
+
+palletEl.addEventListener('click', onPalletElClick);

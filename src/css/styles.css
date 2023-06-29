@@ -1,0 +1,4 @@
+.test {
+  display: grid;
+  transition: color 300ms linear;
+}

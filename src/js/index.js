@@ -3,5 +3,4 @@ class User {
     this.firstName = 'Andrii';
   }
 }
-
 const user = new User();

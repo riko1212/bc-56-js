@@ -1,0 +1,32 @@
+{
+  "name": "bc-56",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "autoprefixer": "npx postcss src/css/*.css --use autoprefixer -d build/",
+    "babel": "babel src/js/*js -d build/js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riko1212/bc-56-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riko1212/bc-56-js/issues"
+  },
+  "homepage": "https://github.com/riko1212/bc-56-js#readme",
+  "dependencies": {
+    "@babel/preset-env": "^7.22.5",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "postcss-cli": "^10.1.0"
+  },
+  "browserslist": "last 6 versions",
+  "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5"
+  }
+}

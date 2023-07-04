@@ -4,9 +4,46 @@
 
 //? конструктор new Promise(callback(resolve, reject));
 
+// const promise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     const randomNum = Math.random();
+//     const data = JSON.stringify([{}, {}, {}]);
+//     if (randomNum > 0.5) {
+//       resolve(data);
+//     } else {
+//       reject('err');
+//     }
+//   }, 2000);
+// });
+
+// console.log(promise);
+
 //? then(onSuccess, onError)
 
 //? ланцюжок промісів та catch(onError)
+// promise
+//   .then((response) => {
+//     const data = JSON.parse(response);
+//     return data;
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((data) => {
+//     console.log(data);
+//   })
+//   .finally(() => {
+//     console.log('finally');
+//   });
+
+const response = fetch('https://swapi.dev/api/starships/11/');
+response
+  .then((response) => {
+    return response;
+  })
+  .then((data) => {
+    console.log(data);
+  });
 
 //? finally()
 
@@ -20,7 +57,7 @@
 //   }, 1000);
 // });
 
-// promise.then(result => {
+// promise.then((result) => {
 //   console.log(result);
 // });
 
@@ -31,16 +68,16 @@
 // });
 
 // promise
-//   .then(data => {
-//     console.log(data); // '1'
-//   })
-//   .then(data => {
-//     console.log(data); // undefined
+//   .then((data) => {
+//     console.log(data);
 
+//   })
+//   .then((data) => {
+//     console.log(data);
 //     return '2';
 //   })
-//   .then(data => {
-//     console.log(data); // '2'
+//   .then((data) => {
+//     console.log(data);
 //   });
 
 //? TASK 03

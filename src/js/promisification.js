@@ -1,0 +1,60 @@
+// https://api.github.com/users/riko1212
+// function myAsyncFunction(url) {
+//   const promise = new Promise((resolve, reject) => {
+//     const xhr = new XMLHttpRequest();
+
+//     xhr.open('GET', url);
+//     xhr.send();
+
+//     xhr.addEventListener('load', () => {
+//       if (xhr.status !== 200) {
+//         reject(xhr.status);
+//       } else {
+//         resolve(xhr.responseText);
+//       }
+//     });
+//   });
+
+//   return promise;
+// }
+
+// myAsyncFunction('https://api.github.com/users/riko1212')
+//   .then(data => {
+//     console.log(JSON.parse(data));
+//   })
+//   .catch(err => {
+//     console.log(err);
+//   });
+
+//? Запит за користувачем на колбэках
+// const fetchUserByName = (name, onSuccess, onError) => {
+//   console.log('Робимо запит на сервер...');
+
+//   setTimeout(() => {
+//     const isDone = Math.random();
+
+//     if (isDone > 0.5) {
+//       const user = {
+//         firstName: name,
+//         lastName: 'Francis',
+//         age: 30,
+//       };
+
+//       onSuccess(user);
+//     } else {
+//       onError("Користувача з таким ім'ям не знайдено");
+//     }
+//   }, 2000);
+// };
+
+// const handleSuccessFetch = data => {
+//   console.log(data);
+// };
+
+// const handleErrorFetch = err => {
+//   console.log(err);
+// };
+
+// fetchUserByName('Ida', handleSuccessFetch, handleErrorFetch);
+
+//? Запит за користувачем на промісах

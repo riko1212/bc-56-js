@@ -1,19 +1,24 @@
 // https://openweathermap.org/current
 import makeWeatherCard from '../templates/weather-card.hbs'
 import { fetchWeather } from './weather-api'
+// import axios from "axios";
 
-// fetch('https://api.thecatapi.com/v1/search?breed_ids=beng', {
-//   headers: {
-//     'x-api-key':'live_Y1L53BkbeQ0rKz6SFWIVspjzTlD5d5nxUI61VfjsZLzbHGjAIfn0nQLtY4HSLTyD'
-//   }
-// }).then(response => {
-//   console.log(response);
+// axios.defaults.headers.common["x-api-key"] = "live_Y1L53BkbeQ0rKz6SFWIVspjzTlD5d5nxUI61VfjsZLzbHGjAIfn0nQLtY4HSLTyD";
+
+// fetch('https://api.thecatapi.com/v1/images/search?breed_ids=beng').then(response => {
+  
 //   if (!response.ok) {
 //     throw new Error(response.status)
 //   }
 //   return response.json()
 // }).then(data => {
 //   console.log(data);
+//   fetch(`https://api.thecatapi.com/v1/images/${data[0].id}`).then(response => {
+//     return response.json();
+//   }).then(data => {
+//     console.log(data);
+//   })
+  
 // }).catch(err => {
 //   console.log(err);
 // })

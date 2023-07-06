@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Heroes</title>
+    <title>Weather</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.1.0/modern-normalize.min.css"
@@ -13,16 +13,23 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="./css/common.css" />
-    <link rel="stylesheet" href="./css/heroes.css" />
+    <link rel="stylesheet" href="./css/weather.css" />
   </head>
 
   <body>
-    <section class="heroes">
+    <section class="weather">
       <div class="container">
-        <ul class="list heroes-list js-heroes-list"></ul>
+        <form class="search-form js-search-form">
+          <input
+            class="search-input js-search-input"
+            type="text"
+            name="user_country"
+          />
+          <button class="search-btn" type="submit">пошук</button>
+        </form>
+        <div class="weather__wrapper js-weather__wrapper"></div>
       </div>
     </section>
-
-    <script type="module" src="./js/heroes.js"></script>
+    <script type="module" src="./js/weather.js"></script>
   </body>
 </html>

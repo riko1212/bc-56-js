@@ -1,20 +1,22 @@
+'use strict';
 export class UnsplashApi {
-  #BASE_URL = 'https://api.unsplash.com/';
+  #BASE_URL = 'https://api.unsplash.com/search/photos';
   #API_KEY = 'Xn_eH2Gi-hkj7ulpwwCcpyWldnnOhEEXSryD5-QYcnQ';
   constructor() {
-    this.searchQuery = ''
-    this.page = 1
+    this.page = null;
+    this.searchQuery = '';
+    this.perPage = 10;
   }
 
-  fetchPhotos() {
+  fetchPhotosByQuery() {
     const searchParams = new URLSearchParams({
       query: this.searchQuery,
-      per_page: 12,
       page: this.page,
-      orientation: 'portrait',
+      per_page: this.perPage,
+      // orientation: 'vertical',
       client_id: this.#API_KEY,
     });
-    return fetch(`${this.#BASE_URL}/search/photos?${searchParams}`).then(response => {
+    return fetch(`${this.#BASE_URL}?${searchParams}`).then(response => {
       if (!response.ok) {
         throw new Error(response.status);
       }

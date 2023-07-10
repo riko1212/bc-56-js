@@ -1,8 +1,24 @@
 /*
  * Method (POST). Headers ("Content-Type": "application/json"). Body.
  */
+const BASE_URL = 'http://localhost:3000';
+const createUser = userData => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify(userData),
+    headers: {
+      'Content-Type' : 'application/json'
+    },
+  };
+  return fetch(`${BASE_URL}/users`, options).then(response => {
+    if (!response.ok) {
+      throw new Error(response.status)
+    }
+    return response.json()
+  })
+};
 
-// {
+// createUser({
 //   name: 'Mittie Alexander',
 //   username: 'Antonette',
 //   email: 'hec@suwmer.edu',
@@ -23,4 +39,10 @@
 //     catchPhrase: 'Proactive didactic contingency',
 //     bs: 'synergize scalable supply-chains',
 //   },
-// }
+// }).then(data => {
+//     console.log(data);
+//   }).catch(err => {
+//     console.log(err);
+//   })
+
+

@@ -1,62 +1,77 @@
-import makeGalleryCard from '../templates/gallery-card.hbs';
+// https://unsplash.com/
+import createGalleryCard from '../templates/gallery-card.hbs';
 import { UnsplashApi } from './unsplash-api';
-
-const galleryListEl = document.querySelector('.js-gallery');
-const searchFormEl = document.querySelector('.js-search-form');
-const loadMoreBtnEl = document.querySelector('.js-load-more');
 
 const unsplashApi = new UnsplashApi();
 
-const onLoadMoreBtnElClick = event => {
-  unsplashApi.page += 1;
+const showRandomPhotos = () => {
   unsplashApi
-    .fetchPhotos()
+    .getRandomPhotos()
     .then(response => {
-      console.log(response);
-      const { total, total_pages, results } = response.data;
-      const galleryMarkup = makeGalleryCard(results);
-      galleryListEl.insertAdjacentHTML('beforeend', galleryMarkup);
-      if (total_pages === unsplashApi.page) {
-        loadMoreBtnEl.classList.add('is-hidden');
-        loadMoreBtnEl.removeEventListener('click', onLoadMoreBtnElClick);
-      }
+      const { data } = response;
+      console.log(data);
+      galleryListEl.innerHTML = createGalleryCard(data);
     })
     .catch(err => {
       console.log(err);
     });
 };
 
-const onSearchFormElSubmit = event => {
-  event.preventDefault();
-  const searchQuery = event.currentTarget.elements.user_search_query.value;
-  unsplashApi.searchQuery = searchQuery;
+showRandomPhotos();
+
+const searchFormEl = document.querySelector('.js-search-form');
+const loadMoreBtnEl = document.querySelector('.js-load-more');
+const galleryListEl = document.querySelector('.js-gallery');
+
+const onSearchFormSubmit = e => {
+  e.preventDefault();
+  unsplashApi.page = 1;
+  unsplashApi.searchQuery = e.currentTarget.user_search_query.value;
   unsplashApi
-    .fetchPhotos()
+    .fetchPhotosByQuery()
     .then(response => {
-      // console.log(response.data.results);
-      const { total, total_pages, results } = response.data;
-      if (total_pages === 0) {
+      const { data } = response;
+      console.log(data);
+      if (data.total_pages === 0) {
         galleryListEl.innerHTML = '';
         loadMoreBtnEl.classList.add('is-hidden');
-        loadMoreBtnEl.removeEventListener('click', onLoadMoreBtnElClick);
-        throw 'По цьому запиту немає фото';
-      }
-      if (total_pages === 1) {
-        const galleryMarkup = makeGalleryCard(results);
-        galleryListEl.innerHTML = galleryMarkup;
-        loadMoreBtnEl.classList.add('is-hidden');
-         loadMoreBtnEl.removeEventListener('click', onLoadMoreBtnElClick);
-
+        loadMoreBtnEl.removeEventListener('click', onMoreBtnClick);
+        console.log('За вашим запитом нічого не знайдено');
         return;
       }
-      const galleryMarkup = makeGalleryCard(results);
-      galleryListEl.innerHTML = galleryMarkup;
+
+      if (data.total_pages === 1) {
+        loadMoreBtnEl.classList.add('is-hidden');
+        loadMoreBtnEl.removeEventListener('click', onMoreBtnClick);
+        galleryListEl.innerHTML = createGalleryCard(data.results);
+        return;
+      }
+      galleryListEl.innerHTML = createGalleryCard(data.results);
       loadMoreBtnEl.classList.remove('is-hidden');
-      loadMoreBtnEl.addEventListener('click', onLoadMoreBtnElClick);
+      loadMoreBtnEl.addEventListener('click', onMoreBtnClick);
     })
     .catch(err => {
       console.log(err);
     });
 };
 
-searchFormEl.addEventListener('submit', onSearchFormElSubmit);
+const onMoreBtnClick = () => {
+  unsplashApi.page += 1;
+
+  unsplashApi
+    .fetchPhotosByQuery()
+    .then(response => {
+      const { data } = response;
+      console.log(data.results);
+      galleryListEl.insertAdjacentHTML('beforeend', createGalleryCard(data.results));
+      if (unsplashApi.page === data.total_pages) {
+        loadMoreBtnEl.classList.add('is-hidden');
+        loadMoreBtnEl.removeEventListener('click', onMoreBtnClick);
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
+searchFormEl.addEventListener('submit', onSearchFormSubmit);
